@@ -1,7 +1,7 @@
 html,body{
     height: 100%;
     margin: auto;
-    color: #777;
+    /* color: #777; */
     /* background-color: rgb(8, 8, 27); */
 }
 
@@ -14,6 +14,18 @@ nav{
     font-size: 18px;
     top: 0;
     width: 100%;
+    z-index: 1;
+}
+.colored-bar{
+    border-bottom: 2px solid rgb(100, 100, 100);
+    background-color: rgb(63, 62, 70);
+    background-attachment: sticky;
+    overflow: hidden;
+    position: fixed;
+    font-size: 18px;
+    top: 0;
+    width: 100%;
+    height: 5%;
     z-index: 1;
 }
 nav ul{
@@ -32,17 +44,38 @@ nav ul li:hover{
     text-decoration: none;
 
 }
+.home-wrapper{
+    margin-top: 5%;
+}
 .heading{
     font-size: 24px;
     font-weight: bold;
     color: black;
 }
-.wrapper{
-    margin-top: 5%;
-
+.blog-wrapper{
+    margin-top: 3.5%;
+}
+.form-wrapper{
+    margin-top: 3.5%;
 }
 .box{
     border: black solid 2px;
     border-radius: 20px;
     padding:10px;
+}
+.form-box{
+    border: black solid 2px;
+    border-radius: 20px;
+    padding:10px;
+}
+.login-wrapper{
+    margin-top: 5%;
+}
+.login-form{
+    border: black solid 2px;
+    border-radius: 20px;
+    padding:10px;
+}
+.signup-wrapper{
+    margin-top: 5%;
 }

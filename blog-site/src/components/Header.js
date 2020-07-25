@@ -13,7 +13,7 @@ const Header = () => {
                             {/* Link at the top in the nav bar */}
                             <ul>
                                 <li><Link to='/'>Home </Link></li>
-                                <li><Link to='/create'>Create Post </Link></li>
+                                <li><Link to='/createPost'>Create Post </Link></li>
                                 <li><Link to='/login'>Log in</Link></li>
                             </ul>
                         </div>

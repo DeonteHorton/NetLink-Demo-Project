@@ -17,8 +17,11 @@ app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
     res.json({
-        "All accounts":"https://localhost:3008/api/accounts",
-        "All blog post":"https://localhost:3008/api/blogs"
+        "All accounts":"http://localhost:3008/api/accounts",
+        "Search for account":"http://localhost:3008/api/accounts/login/",
+        "All blog post":"http://localhost:3008/api/blogs",
+        "Find blog post":"http://localhost:3008/api/blogs/findBlog/number",
+
     })
 });
 

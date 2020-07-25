@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "SET PORT 3007 && node index.js",
-    "dev": "SET PORT=3008 && nodemon index.js",
+    "start": "set PORT=3007 && node index.js",
+    "dev": "set PORT=3008 && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -8,7 +8,13 @@ router.get('/',(req,res) => {
   Dao.getAllAccounts(req,res)
 })
 
+router.get('/login/:username&:password',(req,res) => {
+  Dao.searchForAccount(req,res)
+})
+
 router.post('/create',(req,res) => {
   console.log(req.body)
   Dao.create(req,res);
 })
+
+module.exports = router;

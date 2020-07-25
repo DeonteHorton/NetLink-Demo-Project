@@ -2,7 +2,7 @@ const pool = require('../config/dbconfig');
 
 class AccountDao {
   constructor(){
-    this.pool = pool
+    this.pool = pool;
   }
 
   run = (req,res,sql)  => {
@@ -28,6 +28,16 @@ class AccountDao {
     let fields = Object.keys(req.body);
     let values = Object.values(req.body);
     let sql = `INSERT INTO accounts (${fields}) VALUES (${Array(values.length - 1).fill('?').join(',')},NOW())`
+    this.pool.query(sql,values,
+      (error,rows)=>{
+      if (error) {
+        res.json({
+          "error":true,
+          "message":error
+        })
+      };
+      res.json(rows)
+    })
   }
 
   getAllAccounts(req,res){
@@ -41,6 +51,19 @@ class AccountDao {
         });
       };
       res.json(rows)
+    })
+  }
+  searchForAccount(req,res){
+    let sql = ` SELECT * from accounts where username = ? AND password = ?`;
+
+    this.pool.query(sql,[req.params.username,req.params.password], (error,rows) => {
+      if(error){
+        res.json({
+          "error":true,
+          "message":error
+        })
+      }
+      res.json(rows);
     })
   }
 

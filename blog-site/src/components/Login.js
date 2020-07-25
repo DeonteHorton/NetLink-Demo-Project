@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
+import React,{useState,useEffect} from 'react'
+import {Link,Redirect} from 'react-router-dom'
 
 
 const Login = () => {
+    const [redirect,statusChange] = useState(false);
    
     const check_info = (eve) =>{
         eve.preventDefault();
@@ -10,26 +11,27 @@ const Login = () => {
         let user_name = document.getElementById('login-username').value;
         let password = document.getElementById('login-password').value;
         
-        const [{user},dispatch] = this.context;
+        // const [{user},dispatch] = this.context;
         
-        fetch(`http://localhost:3006/api/accounts/search_account/${user_name}&${password}`)
+        fetch(`http://localhost:3008/api/accounts/login/${user_name}&${password}`)
         .then(response => response.json())
         .then(data => {
             if (data.length === 0 || data === undefined) {
                 window.alert('User Name or Password is incorrect')
             } else{
-                user.loggedIn = true;
-                dispatch({
-                    type:'changeUser',
-                    newUser:data[0]
-                })
-                this.setState(() => ({
-                    redirect: true
-                }))
-                
+                // user.loggedIn = true;
+                // dispatch({
+                //     type:'changeUser',
+                //     newUser:data[0]
+                // })
+                statusChange(true)
             }
         })
         
+    }
+    
+    if(redirect === true){
+        return <Redirect to='/blog' />
     }
 
     return (

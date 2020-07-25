@@ -14,27 +14,19 @@ const Signup = () =>{
         let password = document.getElementById('password').value;
         let confirm_password = document.getElementById('confirm-password').value;
         let email = document.getElementById('email').value;
-        let age = document.getElementById('age').value;
-        let guardian_select = document.getElementById("guardians");
-        let g_value = guardian_select.options[guardian_select.selectedIndex].value;
-        let class_select = document.getElementById("classes");
-        let c_value = class_select.options[class_select.selectedIndex].value;
+
      
         const data = {
-         "email":email,
-         "username":user,
-         "password":password,  
-         "fname": first_name,
-         "lname":last_name,
-         "age":age,
-         "guardian_id":g_value,
-         "class_id":c_value,
-         "rank_id":'',
-         "created_on":''
+        "username":user,
+        "password":password,  
+        "fname": first_name,
+        "lname":last_name,
+        "email":email,
+        "created_on":''
         }
         
 
-        if(email === '' ||  user === '' || password === '' || first_name === '' || last_name === '' || age === '' || g_value === 'Guardian' || c_value === 'Class' ){
+        if(email === '' ||  user === '' || password === '' || first_name === '' || last_name === '' ){
             window.alert('Missing Data in one or more input field')
         } 
         else if (password.length < 8 || password.length > 20 ){
@@ -57,7 +49,7 @@ const Signup = () =>{
         } 
         else{
             window.alert('Thank you for joining us!')
-            fetch('http://localhost:3006/api/accounts/create',{
+            fetch('http://localhost:3008/api/accounts/create',{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,9 +75,22 @@ const Signup = () =>{
                             <form onSubmit={post_form} action="" method="get">
                                 <div className="login-form">
                                     <p className="login-ptag">User Name:</p>
-                                    <input type="text" name="User" id="login-username" placeholder="User"/>
+                                    <input type="text" name="User Name" id="login-username" placeholder="User Name"/>
+
+                                    <p className="login-ptag">First Name:</p>
+                                    <input type="text" name="First Name" id="login-username" placeholder="First Name"/>
+
+                                    <p className="login-ptag">Last Name:</p>
+                                    <input type="text" name="Last Name" id="login-username" placeholder="Last Name"/>
+
+                                    <p className="login-ptag">Email:</p>
+                                    <input type="text" name="Email" id="login-username" placeholder="nunuya@gmail.com"/>
+
                                     <p className="login-ptag">Password:</p>
-                                    <input type="password" name="password" id="login-password" placeholder="Password" />
+                                    <input type="password" name="password" id="login-password" placeholder="Password" /> 
+
+                                    <p className="login-ptag">Confirm Password:</p>
+                                    <input type="password" name=" confirm password" id="login-password" placeholder=" Confirm Password" />
                                     <br/>
                                     <input id="login-button" type="submit" value="Sign up"/>
                     

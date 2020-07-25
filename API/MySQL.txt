@@ -1,0 +1,40 @@
+DROP DATABASE IF exists demo_project;
+CREATE DATABASE demo_project;
+USE demo_project;
+
+CREATE TABLE accounts(
+    id int auto_increment primary key,
+    username varchar(20),
+    password varchar (20),
+    fname varchar(20),
+    lname varchar(20),
+    email varchar(30),
+    created_on datetime,
+    deleted_on datetime DEFAULT NULL
+);
+
+CREATE TABLE blogs(
+    id int auto_increment primary key,
+    title varchar(80),
+    author varchar(20),
+    blog text,
+    created_on date,
+    time_created time,
+    deleted_on datetime DEFAULT NULL
+);
+
+INSERT INTO accounts (username,password,fname,lname,email,created_on) VALUES (
+    'deonte',
+    'deonte123',
+    'Deonte',
+    'Horton',
+    'nuya@email.com',
+    NOW()
+);
+INSERT INTO blogs (title,author,blog,created_on,time_created) VALUES(
+    'Start my career today',
+    'deonte',
+    'this is how my day went',
+    NOW(),
+    NOW()
+);

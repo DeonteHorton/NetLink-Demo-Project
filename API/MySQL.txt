@@ -38,3 +38,11 @@ INSERT INTO blogs (title,author,blog,created_on,time_created) VALUES(
     NOW(),
     NOW()
 );
+
+INSERT INTO blogs (title,author,blog,created_on,time_created) VALUES(
+    'today is my day',
+    'deonte4',
+    'this is how my day went down',
+    NOW(),
+    NOW()
+);

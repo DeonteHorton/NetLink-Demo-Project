@@ -1,5 +1,4 @@
 const pool = require('../config/dbconfig');
-const { json } = require('body-parser');
 
 class BlogDao {
   constructor(){
@@ -19,9 +18,17 @@ class BlogDao {
   };
   
   create(req,res){
+      //requires all data
+      if(!req.body.title || !req.body.blog || !req.body.author){
+        res.json({
+          "error":true,
+          "message":"Missing data"
+        })
+      }
+
     let fields = Object.keys(req.body);
     let values = Object.values(req.body);
-    let sql = `INSERT INTO blogs (${fields}) VALUES (${Array(values - 3)}, NOW(), NOW())`
+    let sql = `INSERT INTO blogs (${fields}) VALUES (${Array(values.length - 2).fill('?').join(',')},NOW(),NOW())`
 
     this.pool.query(sql,values,
       (error,rows)=>{

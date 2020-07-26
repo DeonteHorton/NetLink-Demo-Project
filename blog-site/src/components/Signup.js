@@ -1,19 +1,20 @@
 import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 
 const Signup = () =>{
+    const [redirect,statusChange] = useState(false);
     
     const post_form = (eve) =>{
         eve.preventDefault();
         
-        let first_name = document.getElementById('first-name').value;
-        let last_name = document.getElementById('last-name').value;
-        let user = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
-        let confirm_password = document.getElementById('confirm-password').value;
-        let email = document.getElementById('email').value;
+        let first_name = document.getElementById('signup-fname').value;
+        let last_name = document.getElementById('signup-lname').value;
+        let user = document.getElementById('signup-username').value;
+        let password = document.getElementById('signup-password').value;
+        let confirm_password = document.getElementById('signup-confirm-password').value;
+        let email = document.getElementById('signup-email').value;
 
      
         const data = {
@@ -58,13 +59,14 @@ const Signup = () =>{
             })
             .then(repsonse => repsonse.json())
             .then(data)
-            this.setState(() => ({
-                redirect: true
-            })) 
+            statusChange(true) 
 
         } 
     }
 
+    if(redirect === true){
+        return <Redirect to='/login' />
+    }
     return (
         <>
          <div className='colored-bar'></div>
@@ -75,22 +77,22 @@ const Signup = () =>{
                             <form onSubmit={post_form} action="" method="get">
                                 <div className="login-form">
                                     <p className="login-ptag">User Name:</p>
-                                    <input type="text" name="User Name" id="login-username" placeholder="User Name"/>
+                                    <input type="text" name="User Name" id="signup-username" placeholder="User Name"/>
 
                                     <p className="login-ptag">First Name:</p>
-                                    <input type="text" name="First Name" id="login-username" placeholder="First Name"/>
+                                    <input type="text" name="First Name" id="signup-fname" placeholder="First Name"/>
 
                                     <p className="login-ptag">Last Name:</p>
-                                    <input type="text" name="Last Name" id="login-username" placeholder="Last Name"/>
+                                    <input type="text" name="Last Name" id="signup-lname" placeholder="Last Name"/>
 
                                     <p className="login-ptag">Email:</p>
-                                    <input type="text" name="Email" id="login-username" placeholder="nunuya@gmail.com"/>
+                                    <input type="text" name="Email" id="signup-email" placeholder="nunuya@gmail.com"/>
 
                                     <p className="login-ptag">Password:</p>
-                                    <input type="password" name="password" id="login-password" placeholder="Password" /> 
+                                    <input type="password" name="password" id="signup-password" placeholder="Password" /> 
 
                                     <p className="login-ptag">Confirm Password:</p>
-                                    <input type="password" name=" confirm password" id="login-password" placeholder=" Confirm Password" />
+                                    <input type="password" name=" confirm password" id="signup-confirm-password" placeholder=" Confirm Password" />
                                     <br/>
                                     <input id="login-button" type="submit" value="Sign up"/>
                     

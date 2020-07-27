@@ -1,10 +1,12 @@
 html,body{
     height: 100%;
     margin: auto;
-    /* color: #777; */
-    /* background-color: rgb(8, 8, 27); */
 }
 
+.btn{
+    margin-left: 1.5%;
+    margin-bottom: 1%;
+}
 nav{
     border-bottom: 2px solid rgb(100, 100, 100);
     background-color: rgb(63, 62, 70);

@@ -1,11 +1,9 @@
 import React,{useState} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 
-
-
 const Signup = () =>{
     const [redirect,statusChange] = useState(false);
-    
+    // When the user submits the form, all the information is stored in the data object then it's posted through a fetch
     const post_form = (eve) =>{
         eve.preventDefault();
         
@@ -15,8 +13,8 @@ const Signup = () =>{
         let password = document.getElementById('signup-password').value;
         let confirm_password = document.getElementById('signup-confirm-password').value;
         let email = document.getElementById('signup-email').value;
-
-     
+    
+        // data is stored here on submit
         const data = {
         "username":user,
         "password":password,  
@@ -26,27 +24,9 @@ const Signup = () =>{
         "created_on":''
         }
         
-
+        // Check if the inputs are empty. Must fill in all input fields 
         if(email === '' ||  user === '' || password === '' || first_name === '' || last_name === '' ){
             window.alert('Missing Data in one or more input field')
-        } 
-        else if (password.length < 8 || password.length > 20 ){
-            window.alert(`Password must be at least 8 characters and no more than 20 characters `)
-        } 
-        else if (!password.match(/[A-Z]/g)){
-            window.alert('Password must contain atleast one uppercase letter')
-        } 
-        else if (!password.match(/[a-z]/g)){
-            window.alert('Password must contain atleast one lowercase letter')
-        } 
-        else if (!password.match(/[0-9]/g)){
-            window.alert('Password must contain atleast one number')
-        }
-        else if (!password.match(/[!@#$%^&*_:?|]/g)){
-            window.alert('Password must contain at least one special character')
-        }         
-        else if (password !== confirm_password){
-            window.alert('Password does not match confirm password')
         } 
         else{
             window.alert('Thank you for joining us!')
@@ -59,11 +39,13 @@ const Signup = () =>{
             })
             .then(repsonse => repsonse.json())
             .then(data)
+            //  changes the useState from false to true
             statusChange(true) 
 
         } 
     }
 
+    // When redirect becomes true, the user will be direct to the log in component
     if(redirect === true){
         return <Redirect to='/login' />
     }

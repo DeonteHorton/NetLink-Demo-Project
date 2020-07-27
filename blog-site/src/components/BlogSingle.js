@@ -7,6 +7,7 @@ const BlogSingle = (props) => {
     const placeHolder = 'https://via.placeholder.com/1115x300'
 
     const {id} = props.match.params;
+    // Using useEffect as componentDidMount and ComponentDidUpdate
     useEffect(()=>{
         fetch(`http://localhost:3008/api/blogs/findBlog/${id}`)
         .then(response => response.json())
@@ -16,7 +17,9 @@ const BlogSingle = (props) => {
     },[id])
 
     const Post = (props) =>{
+        // Destructuring the data from postData in this.state
         const {title,author,blog,created_on,time_created} = props.postData;
+        
         const title_style = {
             color:'Black',
             fontWeight:'Bold'

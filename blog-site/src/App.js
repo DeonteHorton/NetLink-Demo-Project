@@ -11,13 +11,14 @@ import Post from './components/CreateBlog'
 import {StateProvider} from './components/helper/globalState'
 
 function App() {
+  // Once the user logs in, their username is stored in the globalState
   const globalState = {
     user:{
       loggedIn:false,
       username:undefined
     }
   }
-
+  // Used the reducer as a dispatch
   const reducer = (state,action) =>{
     switch (action.type) {
       case 'changeUser':

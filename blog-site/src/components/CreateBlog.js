@@ -5,6 +5,7 @@ import {StateContext} from './helper/globalState'
 
 
 class Post extends React.Component{
+    // Imported the createContext to have access to the user object
     static contextType = StateContext
     constructor(){
         super()
@@ -15,6 +16,7 @@ class Post extends React.Component{
     }
 
     componentDidMount(){
+        // When the component is mounted, the global state becomes accessible
         const [{user}] = this.context
         this.setState({
             user:user
@@ -22,12 +24,14 @@ class Post extends React.Component{
 
     }
 
+    // When the user submits the form, all the information is stored in the data object then it's posted through a fetch
     publish_blog = (eve) => {
         eve.preventDefault();
         let author = this.state.user.username;
         let blog_title = document.getElementById('blog-title').value;
         let blog_text = document.getElementById('blog-text').value;
 
+        // data is stored here on submit
         const data = {
             "title":blog_title,
             "author":author,
@@ -36,11 +40,13 @@ class Post extends React.Component{
             "time_created":''
         }
         if(this.state.user.username === undefined){
+            // Checks for if the user is logged in, if not, they will be directed to the log in component
             window.alert('To publish a post, log in')
             this.setState(() => ({
                 redirect: true
             }))
         } 
+        // Not allowed to send the data unless both inputs contains data
         else if ( blog_title === '' || blog_text === ''){
             window.alert('Missing data in one or more input field')
         } 
@@ -59,7 +65,7 @@ class Post extends React.Component{
     }
 
     render(){
-        
+        // When redirect becomes true, the user is directed to the login page
         if(this.state.redirect === true){
             return < Redirect to='/login' />
         }

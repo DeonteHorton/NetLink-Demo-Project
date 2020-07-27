@@ -1,3 +1,4 @@
+// Used createContext to use globalState in multiple components
 import React, {createContext, useReducer} from 'react';
 export const StateContext = createContext();
 export const StateProvider = ({reducer, globalState, children}) =>(

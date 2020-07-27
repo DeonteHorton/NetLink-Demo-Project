@@ -1,8 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Header from './Header'
-import {StateContext} from './helper/globalState'
-
 
 class Blog extends React.Component{
     constructor(){
@@ -14,7 +12,12 @@ class Blog extends React.Component{
     
     Post = (props) =>{
         const placeHolder = 'https://via.placeholder.com/1115x300'
+        // Destructuring the data from postData in this.state
         const {id,title,author,blog} = props.postData;
+
+        // if the blog is over 400 characters, the rest of the blog is hidden
+        const text = blog.slice(0,400).concat('........')
+
         const title_style = {
             color:'Black',
             fontWeight:'Bold'
@@ -30,7 +33,7 @@ class Blog extends React.Component{
                 <h1 style={title_style}>{title}</h1>
                 <img src={placeHolder} />
                 <h2 style={user_style}>Author: {author}</h2>
-                <p>{blog}</p>
+                <p>{text}</p>
                 <Link className='null btn btn-primary' to={`/blog/${id}`}>View Blog</Link>
             </div>
             </>

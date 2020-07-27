@@ -3,6 +3,8 @@ import {Link,Redirect} from 'react-router-dom'
 import { StateContext } from './helper/globalState'
 
 class Login extends React.Component {
+    // Imported the createContext to have access to the user object
+
     static contextType = StateContext
     constructor(){
         super()
@@ -12,12 +14,15 @@ class Login extends React.Component {
     }
     
     componentDidMount(){
+        // When the component is mounted, the global state becomes accessible
         const [{user}] = this.context;
     }
 
+    // Check if the Username and password
      check_info = (eve) =>{
         eve.preventDefault();
-        
+
+        // When the component is mounted, the global state becomes accessible
         const [{user},dispatch] = this.context;
 
         let user_name = document.getElementById('login-username').value;
@@ -45,7 +50,10 @@ class Login extends React.Component {
     }
     
     render(){
+        // When the component is mounted, the globalState becomes accessible
         const [{user}] = this.context;
+
+        // When redirect becomes true, the user is directed to the blog page and the loggedin becomes true in the globalState
         if(this.state.redirect === true){
             user.loggedin = true;
             return <Redirect to='/blog' />

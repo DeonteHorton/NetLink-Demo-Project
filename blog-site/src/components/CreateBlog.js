@@ -35,7 +35,7 @@ class Post extends React.Component{
             "created_on":'',
             "time_created":''
         }
-        if(this.state.user.username === ''){
+        if(this.state.user.username === undefined){
             window.alert('To publish a post, log in')
             this.setState(() => ({
                 redirect: true

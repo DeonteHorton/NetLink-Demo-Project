@@ -4,7 +4,7 @@ import Header from './Header'
 
 const BlogSingle = (props) => {
     const [postData,getData] = useState([])
-    const placeHolder = 'https://via.placeholder.com/1140x400'
+    const placeHolder = 'https://via.placeholder.com/1115x300'
 
     const {id} = props.match.params;
     useEffect(()=>{
@@ -44,7 +44,9 @@ const BlogSingle = (props) => {
         <div className='blog-wrapper'>
             <div className='container'>
                 <div className='row'>
+                    <div className='col-sm-12'>
                     {postData}
+                    </div>
                 </div>
             </div>
         </div>

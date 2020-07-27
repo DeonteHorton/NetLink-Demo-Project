@@ -1,20 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import Header from './Header'
+import {StateContext} from './helper/globalState'
 
-const Blog = () => {
-    const [postData,getData] = useState([])
-    const placeHolder = 'https://via.placeholder.com/1140x400'
 
-    useEffect(()=>{
-        fetch('http://localhost:3008/api/blogs')
-        .then(response => response.json())
-        .then(data => {
-            getData(data.map(post => <Post key={post.id} postData={post} />))
-        })
-    },[])
-    const Post = (props) =>{
-        const {id,title,author,blog,created_on,time_created} = props.postData;
+class Blog extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            postData:[]
+        }
+    }
+    
+    Post = (props) =>{
+        const placeHolder = 'https://via.placeholder.com/1115x300'
+        const {id,title,author,blog} = props.postData;
         const title_style = {
             color:'Black',
             fontWeight:'Bold'
@@ -36,17 +36,36 @@ const Blog = () => {
             </>
         )
     }
-    return (
+
+    componentDidMount(){
+        fetch('http://localhost:3008/api/blogs')
+        .then(response => response.json())
+        .then(data => {
+            this.setState({
+                postData:data
+            })
+        })
+    }
+
+    render(){
+        const blog = this.state.postData.map(post => <this.Post key={post.id} postData={post} />)
+        return(
         <>
-        <Header />
-        <div className='blog-wrapper'>
-            <div className='container'>
-                <div className='row'>
-                    {postData}
+            <Header />
+            <div className='blog-wrapper'>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-sm-12'>
+                            {blog}  
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </>
+            </>
     )
+
+    }
+    
 }
+
 export default Blog;

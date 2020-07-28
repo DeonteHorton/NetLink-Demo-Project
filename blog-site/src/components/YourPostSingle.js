@@ -26,7 +26,9 @@ const MyBlogSingle = (props) => {
             fetch(`http://localhost:3008/api/blogs/delete/${id}`,{
                 method:'POST'
             })
-            .then(repsonse => repsonse.json())
+            .then(repsonse => repsonse.json());
+            // changes redirect to true 
+            status(true)
         }
             
     }
@@ -61,6 +63,7 @@ const MyBlogSingle = (props) => {
             .then(repsonse => repsonse.json())
             .then(data)
             window.alert('Successfully published')
+            // changes redirect to true 
             status(true)
         }
 

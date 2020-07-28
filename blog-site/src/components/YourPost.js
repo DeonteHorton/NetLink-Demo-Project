@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import Header from './Header'
 import {StateContext} from './helper/globalState'
 
@@ -9,7 +9,8 @@ class MyBlogs extends React.Component{
     constructor(){
         super()
         this.state = {
-            postData:[]
+            postData:[],
+            redirect:false
         }
     }
     componentDidMount(){
@@ -51,6 +52,9 @@ class MyBlogs extends React.Component{
                     method:'POST'
                 })
                 .then(repsonse => repsonse.json())
+                this.setState({
+                    redirect:true
+                })
             }
         }
         const title_style = {
@@ -81,6 +85,9 @@ class MyBlogs extends React.Component{
 
     render(){
         const blog = this.state.postData.map(post => <this.Post key={post.id} postData={post} />)
+        if(this.state.redirect === true){
+            return <Redirect to='/blog' />
+        }
         return(
         <>
             <Header />
